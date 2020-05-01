@@ -27,7 +27,9 @@ namespace ContosoUniversity.Data
             modelBuilder.Entity<Student>().ToTable("Student");
             modelBuilder.Entity<CourseInstructor>().ToTable("CourseInstructor");
             modelBuilder.Entity<Department>().ToTable("Department");
+            modelBuilder.Entity<Instructor>().ToTable("Instructor");
             modelBuilder.Entity<OfficeAssignment>().ToTable("OfficeAssignment");
+            
         }
     }
 }

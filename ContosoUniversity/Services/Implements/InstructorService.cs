@@ -1,6 +1,10 @@
-﻿using ContosoUniversity.Data;
-using ContosoUniversity.Models;
+﻿using ContosoUniversity.Models;
 using ContosoUniversity.Repositories;
+using ContosoUniversity.Repositories.Implements;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ContosoUniversity.Services.Implements
 {
@@ -10,6 +14,11 @@ namespace ContosoUniversity.Services.Implements
         public InstructorService(IInstructorRepository _instructorRepository) : base(_instructorRepository)
         {
             this.IinstructorRepository = _instructorRepository;
+        }
+
+        public async Task<IEnumerable<Course>> GetCourseByInstructor(int id)
+        {
+            return await IinstructorRepository.GetCourseByInstructor(id);
         }
     }
 }
