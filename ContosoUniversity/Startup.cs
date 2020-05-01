@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
+using ContosoUniversity.Repositories;
 
 namespace ContosoUniversity
 {
@@ -43,9 +44,11 @@ namespace ContosoUniversity
             //Repositories
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
             //Servicies
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IEnrollmentService, EnrollmentService>();
             //AutoMApper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
