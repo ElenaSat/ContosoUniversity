@@ -1,9 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ContosoUniversity.DTOs;
 using ContosoUniversity.Models;
 
 namespace ContosoUniversity.DTOs
@@ -11,12 +6,24 @@ namespace ContosoUniversity.DTOs
     public class Mapper: Profile
     {
         public Mapper()
-        {
-            CreateMap<StudentDTO, Student>();
-            CreateMap<Student,StudentDTO>();
+        {  
+            CreateMap<CourseInstructorDTO, CourseInstructor>();
+            CreateMap<CourseInstructor, CourseInstructorDTO>();
 
             CreateMap<CoursesDTO, Course>();
             CreateMap<Course, CoursesDTO>();
+
+            CreateMap<DepartmentDTO, Department>();
+            CreateMap<Department, DepartmentDTO>();
+
+            CreateMap<InstructorDTO, Instructor>();
+            CreateMap<Instructor, InstructorDTO>();
+
+            CreateMap<OfficeAssignmentDTO, OfficeAssignment>();
+            CreateMap<OfficeAssignment, OfficeAssignmentDTO>();
+
+            CreateMap<StudentDTO, Student>();
+            CreateMap<Student, StudentDTO>();
         }
     }
 }

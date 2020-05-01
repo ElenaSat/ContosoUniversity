@@ -3,19 +3,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ContosoUniversity.DTOs
 {
-    public class StudentDTO
+    public class InstructorDTO
     {
         public int ID { get; set; }
-        [Required(ErrorMessage ="The is LastName requerid ")]
+        [Required(ErrorMessage = "The is LastName requerid ")]
         [Display(Name = "LastName")]
         public string LastName { get; set; }
-
         [Required(ErrorMessage = "The is FirstMidName requerid ")]
-        [Display(Name = "First MidName")]
+        [Display(Name = "FirstMidName")]
         public string FirstMidName { get; set; }
-
-        [Required(ErrorMessage = "The is EnrollmentDate requerid ")]
-        [Display(Name = "EnrollmentDate")]
-        public DateTime EnrollmentDate { get; set; }
+        [Required(ErrorMessage = "The is HireDate requerid ")]
+        [Display(Name = "HireDate")]
+        public DateTime HireDate { get; set; }
     }
 }
