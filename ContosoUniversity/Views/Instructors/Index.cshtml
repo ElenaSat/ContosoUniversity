@@ -69,7 +69,9 @@
         @foreach (var item in listCourses)
         {
             <tr>
-                <td><a asp-action="Index" asp-route-id="@item.CourseID">Select</a></td>
+                <td>
+                    @Html.ActionLink("Select", "Index", "Instructors", new { id=ViewBag.Idins, courseID = item.CourseID }, new { @class = "btn btn-primary fas fa-edit" })
+                </td>
                 <td>@item.CourseID</td>
                 <td>@item.Title</td>
             </tr>
@@ -83,14 +85,13 @@
         <table class="table">
             <tr>
                 <th>Name</th>
-                <th>Grade</th>
             </tr>
             @foreach (var item in listStudents)
             {
-            <tr>
-                <td>@item.LastName @item.FirstMidName</td>
-               
-            </tr>
+                <tr>
+                    <td>@item.LastName @item.FirstMidName</td>
+
+                </tr>
             }
         </table>
 

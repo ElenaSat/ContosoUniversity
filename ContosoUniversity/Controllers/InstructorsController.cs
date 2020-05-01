@@ -30,9 +30,10 @@ namespace ContosoUniversity.Controllers
                 var instructor = await _instructorService.GetById(id.Value);
                 var instr = _mapper.Map<InstructorDTO>(instructor);
                 ViewBag.InstructorD = instr.LastName;
+                ViewBag.Idins = id.Value;
                 if (courseID != null)
                 {
-                    var dataCourseE = await _courseService.GetStudentsByCourse(id.Value);
+                    var dataCourseE = await _courseService.GetStudentsByCourse(courseID.Value);
                     ViewBag.CoursesE = dataCourseE.Select(x => _mapper.Map<StudentDTO>(x)).ToList();
                 }
 
