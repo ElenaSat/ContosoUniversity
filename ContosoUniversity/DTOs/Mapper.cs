@@ -7,9 +7,6 @@ namespace ContosoUniversity.DTOs
     {
         public Mapper()
         {  
-            CreateMap<CourseInstructorDTO, CourseInstructor>();
-            CreateMap<CourseInstructor, CourseInstructorDTO>();
-
             CreateMap<CoursesDTO, Course>();
             CreateMap<Course, CoursesDTO>();
 
