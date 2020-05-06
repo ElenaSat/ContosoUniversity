@@ -1,4 +1,4 @@
-﻿@model ContosoUniversity.DTOs.StudentDTO
+﻿@model ContosoUniversity.DTOs.OfficeAssignmentDTO
 
 @{
     ViewData["Title"] = "Delete";
@@ -13,31 +13,25 @@
     <label class="text-@ViewBag.Type"> @ViewBag.Message</label>
 }
 <div>
-    <h4>Student</h4>
+    <h4>OfficeAssignment</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.Location)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.LastName)
+            @Html.DisplayFor(model => model.Location)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.FirstMidName)
+            @Html.DisplayNameFor(model => model.Instructor)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.FirstMidName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EnrollmentDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EnrollmentDate)
+            @Html.DisplayFor(model => model.Instructor.ID)
         </dd>
     </dl>
 
     <form asp-action="Delete">
-        <input type="hidden" asp-for="ID" />
+        <input type="hidden" asp-for="InstructorID" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>
