@@ -33,8 +33,9 @@ namespace ContosoUniversity.Controllers
                 ViewBag.Idins = id.Value;
                 if (courseID != null)
                 {
-                    var dataCourseE = await _courseService.GetStudentsByCourse(courseID.Value);
-                    ViewBag.CoursesE = dataCourseE.Select(x => _mapper.Map<StudentDTO>(x)).ToList();
+                    var dataCourseE = await _courseService.GetStudentsByCourseEnrollment(courseID.Value);
+                   //  ViewBag.CoursesE = dataCourseE.Select(x => _mapper.Map<Enrol>(x)).ToList();
+                    ViewBag.CoursesE = dataCourseE;
                 }
 
             }

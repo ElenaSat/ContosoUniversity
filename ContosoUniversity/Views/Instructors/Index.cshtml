@@ -80,18 +80,19 @@
 
     @if (ViewBag.CoursesE != null)
     {
-        var listStudents = (IEnumerable<ContosoUniversity.DTOs.StudentDTO>)ViewBag.CoursesE;
+        var listStudents = (IEnumerable<ContosoUniversity.Models.Enrollment>)ViewBag.CoursesE;
         <h3>Students Enrolled in Selected Course</h3>
         <table class="table">
             <tr>
                 <th>Name</th>
+                <th>Grade</th>
             </tr>
             @foreach (var item in listStudents)
             {
-                <tr>
-                    <td>@item.LastName @item.FirstMidName</td>
-
-                </tr>
+            <tr>
+                <td>@item.Student.FullName</td>
+                <td>@item.Grade</td>
+            </tr>
             }
         </table>
 

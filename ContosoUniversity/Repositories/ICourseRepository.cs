@@ -8,5 +8,6 @@ namespace ContosoUniversity.Repositories.Implements
 {
   public  interface ICourseRepository:IGenericRepository<Course> {
         Task<IEnumerable<Student>> GetStudentsByCourse(int id);
+        Task<IEnumerable<Enrollment>> GetStudentsByCourseEnrollment(int id);
     }
 }

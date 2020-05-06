@@ -32,6 +32,16 @@ namespace ContosoUniversity.Repositories.Implements
 
             
          }
+        public async Task<IEnumerable<Enrollment>> GetStudentsByCourseEnrollment(int id)
+        {
+            var listStudents = await schoolContext.Enrollments
+                .Include(x => x.Course).Include(x => x.Student)
+                .Where(x => x.CourseID == id).ToListAsync();
+
+            return listStudents;
+
+
+        }
         public new async Task Delete(int id)
         {
             var entity = await GetById(id);
