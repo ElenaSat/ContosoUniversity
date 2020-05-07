@@ -30,5 +30,12 @@ namespace ContosoUniversity.Repositories.Implements
             await schoolContext.SaveChangesAsync();
             return office;
         }
+
+        public new async Task<OfficeAssignment> GetById(int id)
+        {
+            return await schoolContext.OfficeAssignments
+                  .Include(d => d.Instructor)
+                  .FirstOrDefaultAsync(m => m.InstructorID == id);
+        }
     }
 }
