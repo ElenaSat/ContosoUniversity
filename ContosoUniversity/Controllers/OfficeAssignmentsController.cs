@@ -67,15 +67,29 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(OfficeAssignmentDTO officeAssignment)
         {
-            if (ModelState.IsValid)
+            var data1 = await _instructorService.GetAll();
+            ViewBag.Instructors = data1.Select(x => _mapper.Map<InstructorDTO>(x)).ToList();
+
+            try
             {
-                var office = _mapper.Map<OfficeAssignment>(officeAssignment);
-                await _assignmentService.Insert(office);
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    var office = _mapper.Map<OfficeAssignment>(officeAssignment);
+                    var data= await _assignmentService.Insert(office);
+                    return RedirectToAction(nameof(Index));
+                }
+
+                return View(officeAssignment);
             }
-            var listinstructors = _instructorService.GetAll();
-            ViewBag.Instructors = listinstructors;
-            return View(officeAssignment);
+            catch (Exception ex)
+            {
+               
+                //ViewBag.Instructors = listinstructors;
+                ViewBag.Message = ex.Message;
+                ViewBag.Type = "danger";                
+                return View(officeAssignment);
+            }
+           
         }
 
         // GET: OfficeAssignments/Edit/5

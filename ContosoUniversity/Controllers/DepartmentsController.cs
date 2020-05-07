@@ -15,14 +15,13 @@ namespace ContosoUniversity.Controllers
 {
     public class DepartmentsController : Controller
     {
-        private readonly SchoolContext _context;
+       
         private readonly IMapper _mapper;
         private readonly IDepartmentService _departmentService;
         private readonly IInstructorService _instructorService;
 
-        public DepartmentsController(SchoolContext context, IMapper mapper, IDepartmentService departmentService, IInstructorService instructorService)
+        public DepartmentsController( IMapper mapper, IDepartmentService departmentService, IInstructorService instructorService)
         {
-            _context = context;
             _mapper = mapper;
             _departmentService = departmentService;
             _instructorService = instructorService;
@@ -54,9 +53,10 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Departments/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "ID");
+            var data = await _instructorService.GetAll();
+            ViewBag.Instructors = data.Select(x => _mapper.Map<InstructorDTO>(x)).ToList();
             return View();
         }
 
@@ -65,15 +65,16 @@ namespace ContosoUniversity.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DepartmentID,Name,Budget,StartDate,InstructorID")] Department department)
+        public async Task<IActionResult> Create(DepartmentDTO department)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(department);
-                await _context.SaveChangesAsync();
+                var depart = _mapper.Map<Department>(department);
+                await _departmentService.Insert(depart);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "ID", department.InstructorID);
+            var data = await _instructorService.GetAll();
+            ViewBag.Instructors = data.Select(x => _mapper.Map<InstructorDTO>(x)).ToList();
             return View(department);
         }
 

@@ -21,18 +21,14 @@ namespace ContosoUniversity.Repositories.Implements
             return  listOfficeA;
         }
 
-        //public new async Task Delete(int id)
-        //{
-        //    var entity = await GetById(id);
-
-        //    if (entity == null)
-        //        throw new System.Exception("The entity is null");
-        //    var flag = schoolContext.OfficeAssignments.Any(x => x.InstructorID == id);
-        //    if (flag)
-        //        throw new System.Exception("The Office have Instructors");
-
-        //    schoolContext.OfficeAssignments.Remove(entity);
-        //    await schoolContext.SaveChangesAsync();
-        //}
+        public new async Task<OfficeAssignment> Insert(OfficeAssignment office)
+        {
+             var flag = schoolContext.OfficeAssignments.Any(x => x.InstructorID == office.InstructorID);
+            if (flag)
+                throw new System.Exception("The Instructors have Office");
+            schoolContext.OfficeAssignments.Add(office);
+            await schoolContext.SaveChangesAsync();
+            return office;
+        }
     }
 }

@@ -35,5 +35,22 @@ namespace ContosoUniversity.Repositories.Implements
             //                         select _course).ToListAsync();
             return listCourses;
         }
+        public new async Task Delete(int id)
+        {
+            var instructor = await GetById(id);
+
+            if (instructor == null)
+                throw new System.Exception("The entity is null");
+            var flagdeparments = schoolContext.Departments.Any(x => x.InstructorID == id);
+            var flagoffice = schoolContext.OfficeAssignments.Any(x => x.InstructorID == id);
+            var flagcourseinstructor = schoolContext.CourseInstructors.Any(x => x.InstructorID == id);
+
+            if (flagdeparments|| flagoffice || flagcourseinstructor)
+                throw new System.Exception("The instructor exist in other table");
+
+            schoolContext.Instructors.Remove(instructor);
+            await schoolContext.SaveChangesAsync();
+        }
+
     }
 }

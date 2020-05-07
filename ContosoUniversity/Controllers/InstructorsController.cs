@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ContosoUniversity.DTOs;
+using ContosoUniversity.Models;
 using ContosoUniversity.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,5 +44,117 @@ namespace ContosoUniversity.Controllers
             var listInstructor = data.Select(x => _mapper.Map<InstructorDTO>(x)).ToList();
             return View(listInstructor);
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(InstructorDTO instructorDTO)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var instructor = _mapper.Map<Instructor>(instructorDTO);
+                    var data = await _instructorService.Insert(instructor);
+                    return RedirectToAction(nameof(Index));
+                }
+
+                return View(instructorDTO);
+            }
+            catch (Exception ex)
+           {
+                ViewBag.Message = ex.Message;
+                ViewBag.Type = "danger";
+                return View(instructorDTO);
+            }
+
+        }
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var instructor = await _instructorService.GetById(id.Value);
+            if (instructor == null)
+            {
+                return NotFound();
+            }
+            var instructorDTO = _mapper.Map<InstructorDTO>(instructor);
+            return View(instructorDTO);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(InstructorDTO instructorDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var data = _mapper.Map<Instructor>(instructorDTO);
+                await _instructorService.Update(data);
+                return RedirectToAction(nameof(Index));
+            }           
+            return View(instructorDTO);
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var instruct = await _instructorService.GetById(id.Value);
+            if (instruct == null)
+            {
+                return NotFound();
+            }
+            var instructDTO = _mapper.Map<InstructorDTO>(instruct);
+
+            return View(instructDTO);
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var instructor = await _instructorService.GetById(id.Value);
+            if (instructor == null)
+            {
+                return NotFound();
+            }
+            var instructorDTO = _mapper.Map<InstructorDTO>(instructor);
+            return View(instructorDTO);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var instructor = await _instructorService.GetById(id);
+            try
+            {
+                await _instructorService.Delete(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+                ViewBag.Type = "danger";
+                var instructorDTO = _mapper.Map<InstructorDTO>(instructor);
+                return View("Delete", instructorDTO);
+            }
+
+        }
+
+
     }
 }

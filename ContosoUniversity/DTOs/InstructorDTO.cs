@@ -18,7 +18,6 @@ namespace ContosoUniversity.DTOs
         [Display(Name = "HireDate")]
         public DateTime HireDate { get; set; }
 
-        [Required(ErrorMessage = "The is OfficeAssignmentDTO requerid ")]
         [Display(Name = "OfficeAssignmentDTO")]
         public OfficeAssignment OfficeAssignment { get; set; }
     }
