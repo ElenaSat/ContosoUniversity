@@ -21,11 +21,11 @@
             @Html.DisplayNameFor(model => model.Instructor)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.InstructorID)
+            @Html.DisplayFor(model => model.Instructor.LastName)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.InstructorID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.InstructorID" class="btn btn-success">Edit</a> |
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
 </div>
