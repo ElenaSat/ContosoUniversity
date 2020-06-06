@@ -42,10 +42,10 @@ namespace ContosoUniversity.API
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = Configuration["JWT:Issuer"],
-                        ValidAudience = Configuration["JWT:Audience"],
+                        ValidIssuer = Configuration["JWT:ISSUER_TOKEN"],
+                        ValidAudience = Configuration["JWT:AUDIENCE_TOKEN"],
                         IssuerSigningKey = new SymmetricSecurityKey(
-                            Encoding.UTF8.GetBytes(Configuration["JWT:ClaveSecreta"])
+                            Encoding.UTF8.GetBytes(Configuration["JWT:SECRET_KEY"])
                         )
                     };
                 });

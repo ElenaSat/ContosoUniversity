@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ContosoUniversity.API</name>
+    </assembly>
+    <members>
+        <member name="M:ContosoUniversity.API.Controllers.StudentsController.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ContosoUniversity.API.Controllers.StudentsController.GetById(System.Nullable{System.Int32})">
+            <summary>
+            Obtiene un objeto de estudiante por su Id.
+            </summary>
+            <remarks>
+            Aquí una descripción más larga su fuera necesario. Obtiene un objeto de estudiante por su Id.
+            </remarks>
+            <param name="id">Id (GUID) del objeto</param>
+            <response code="200">OK. Devuelve el objeto solicitado.</response>
+            <response code="404">NotFound. No se ha encontrado el objeto solicitado.</response>
+            <returns></returns>
+        </member>
+        <member name="M:ContosoUniversity.API.Controllers.StudentsController.CreateStudent(ContosoUniversity.API.DTOs.StudentDTO)">
+            <summary>
+            Crear el objeto Student
+            </summary>
+            <param name="studentDTO"></param>
+            <response code="200">OK. Crea el objeto.</response>
+            <response code="404">NotFound. No se ha creado el objeto solicitado.</response>
+            <returns></returns>
+        </member>
+        <member name="M:ContosoUniversity.API.Controllers.StudentsController.UpdateStudent(System.Nullable{System.Int32},ContosoUniversity.API.DTOs.StudentDTO)">
+            <summary>
+            Edita el objeto Student
+            </summary>
+            <param name="id"></param>
+            <param name="studentDTO"></param>
+            <response code="200">OK. Edita el objeto.</response>
+            <response code="404">NotFound. No se ha editado el objeto solicitado.</response>
+            <returns></returns>
+        </member>
+        <member name="M:ContosoUniversity.API.Controllers.StudentsController.DeleteStudent(System.Nullable{System.Int32})">
+            <summary>
+            Elimina el objeto Student
+            </summary>
+            <param name="id"></param>
+            <response code="200">OK. Elimina el objeto.</response>
+            <response code="404">NotFound. No se ha eliminado el objeto solicitado.</response>
+            <returns></returns>
+        </member>
+        <member name="T:ContosoUniversity.API.DTOs.UserDTO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ContosoUniversity.API.Models.User">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
