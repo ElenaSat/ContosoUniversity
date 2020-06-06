@@ -25,9 +25,9 @@ namespace ContosoUniversity.API.Controllers
             return  Ok(true);
         }
 
-        private string GenerateTokenJwt(User user) {
-            var secretKey = configuration["JWT:SECRET_KEY"];
-            var audienceToken= configuration["JWT"]
-        }
+        //private string GenerateTokenJwt(User user) {
+        //    var secretKey = configuration["JWT:SECRET_KEY"];
+        //    var audienceToken= configuration["JWT"]
+        //}
     }
 }
