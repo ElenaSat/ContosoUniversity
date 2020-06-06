@@ -37,7 +37,7 @@ namespace ContosoUniversity.API.Controllers
         }
         // GET: api/Courses/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCourse([FromRoute] int id)
+        public async Task<IActionResult> GetCourse(int id)
         {
             if (!ModelState.IsValid)
             {
@@ -48,15 +48,32 @@ namespace ContosoUniversity.API.Controllers
 
             if (course == null)
             {
-                return StatusCode(404);
+                return NotFound();
             }
 
             return Ok(course);
         }
+        //[HttpGet("{id}")]
+        //[Route("GetCourseSample")]
+        //public async Task<IActionResult> GetCourseSample(int id)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
+        //    var course = await _context.Courses.FindAsync(id);
+
+        //    if (course == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(course);
+        //}
         // PUT: api/Courses/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCourse([FromRoute] int id, [FromBody] Course course)
+        public async Task<IActionResult> PutCourse(int id, [FromBody] Course course)
         {
             if (!ModelState.IsValid)
             {
@@ -120,7 +137,7 @@ namespace ContosoUniversity.API.Controllers
 
         // DELETE: api/Courses/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCourse([FromRoute] int id)
+        public async Task<IActionResult> DeleteCourse( int id)
         {
             if (!ModelState.IsValid)
             {
