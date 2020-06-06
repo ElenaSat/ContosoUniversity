@@ -24,15 +24,20 @@ namespace ContosoUniversity.API.Controllers
             return "value";
         }
 
+        public class RequestDTO {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(RequestDTO requestDTO)
         {
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, RequestDTO requestDTO)
         {
         }
 
